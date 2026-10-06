@@ -182,7 +182,7 @@ a:focus-visible {
   Карточка товара — самостоятельный блок.
   На следующих занятиях карточки будут доработаны и выстроены в сетку.
 */
-..product-card {
+.product-card {
   margin-bottom: var(--space-md);
   padding: var(--space-md);
   border: 1px solid var(--color-border);
@@ -299,3 +299,31 @@ a:focus-visible {
   background-color: var(--color-success-bg);
 }
 
+/*
+  Стили для хлебных крошек
+*/
+
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.breadcrumbs a {
+  color: var(--color-primary);
+}
+
+.breadcrumbs span::before {
+  content: " / ";
+  color: var(--color-muted);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
