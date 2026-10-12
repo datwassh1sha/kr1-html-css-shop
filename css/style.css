@@ -218,6 +218,7 @@ a:focus-visible {
 .product-card__image {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 0.25s;
@@ -295,44 +296,79 @@ a:focus-visible {
    5. Форма и модальное окно
    =============================== */
 
+/*
+  Модальное окно.
+  Элемент dialog сам умеет открываться поверх страницы.
+*/
 .order-dialog {
   width: min(100% - 32px, 560px);
-  padding: var(--space-lg);
+  padding: 24px;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
 }
 
+/*
+  Затемнение фона за модальным окном.
+*/
 .order-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*
+  Поле формы.
+  Каждый блок получает нижний отступ.
+*/
 .form-field {
-  margin-bottom: var(--space-md);
+  margin-bottom: 16px;
 }
 
+/*
+  Подпись поля.
+*/
 .form-field label {
   display: block;
-  margin-bottom: var(--space-xs);
+  margin-bottom: 6px;
 }
 
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
-  border-color: var(--color-primary);
+/*
+  Основные поля формы.
+*/
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font: inherit;
 }
 
+/*
+  Checkbox не должен занимать всю ширину.
+*/
+.form-field input[type="checkbox"] {
+  width: auto;
+}
+
+/*
+  Подсказка под полем телефона.
+*/
+.form-field small {
+  display: block;
+  margin-top: 4px;
+  color: #666666;
+}
+
+/*
+  Видимый фокус для клавиатурной навигации.
+*/
 .form-field input:focus-visible,
 .form-field select:focus-visible,
 .form-field textarea:focus-visible,
 .form-actions button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
+  outline: 2px solid #0057b8;
+  outline-offset: 2px;
 }
-
-[aria-invalid="true"] {
-  border-color: var(--color-danger);
-}
-
 
 /*
   Подсветка ошибочных полей.
@@ -355,12 +391,13 @@ a:focus-visible {
   Сообщение об успешной отправке.
 */
 .success-message {
-  max-width: var(--container-width);
-  margin: var(--space-lg) auto;
-  padding: var(--space-md);
-  border-left: 4px solid var(--color-success);
-  background-color: var(--color-success-bg);
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 16px;
+  border-left: 4px solid #168a2f;
+  background-color: #eefaf0;
 }
+
 
 /*
   Стили для хлебных крошек
@@ -569,15 +606,15 @@ html {
 
 /* Хит продаж */
 .product-card__badge--hit {
-    background-color: #e63946 !important;
+    background-color: #e63946;
 }
 
 /* Новинка */
 .product-card__badge--new {
-    background-color: #2a9d8f !important;
+    background-color: #2a9d8f;
 }
 
 /* Лимитированная серия */
 .product-card__badge--limited {
-    background-color: #6c5ce7 !important;
+    background-color: #6c5ce7;
 }
