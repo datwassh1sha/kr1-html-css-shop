@@ -191,29 +191,74 @@ a:focus-visible {
   Карточка товара — самостоятельный блок.
   На следующих занятиях карточки будут доработаны и выстроены в сетку.
 */
+/* Карточка товара */
 .product-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: 0;
+  min-width: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-
-.product-card .button {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
 
 .product-card:hover {
   border-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-.product-card h3 {
-  margin-top: 0;
+.product-card__image-link {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.product-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.25s;
+}
+
+.product-card__image-link:hover .product-card__image {
+  transform: scale(1.04);
+}
+
+.product-card__category {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.product-card__title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.product-card__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product-card__specs {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+}
+
+.product-card__price {
+  margin: auto 0 0;
+  padding-top: var(--space-md);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.product-card .button {
+  align-self: flex-start;
+  margin-top: var(--space-sm);
 }
 
 
@@ -363,6 +408,9 @@ html {
 
 .catalog-filters {
   grid-area: filters;
+  position: sticky;
+  top: var(--space-md);
+  align-self: start;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -400,4 +448,136 @@ html {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font: inherit;
+}
+
+@media (max-width: 900px) {
+  .catalog-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalog-filters {
+    position: static;
+  }
+
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  header,
+  main,
+  footer {
+    padding: var(--space-md);
+  }
+}
+
+/* Блок отзывов на главной странице */
+
+.reviews__intro {
+  color: var(--color-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.review-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.review-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.review-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.review-card__header h3 {
+  margin: 0;
+}
+
+.review-card__rating {
+  margin: 0;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+}
+
+.review-card__date {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* Адаптивность */
+
+@media (max-width: 900px) {
+  .reviews__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Бейджи на изображениях товаров */
+.product-card__image-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.product-card__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+
+    padding: 6px 10px;
+    border-radius: 6px;
+
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Хит продаж */
+.product-card__badge--hit {
+    background-color: #e63946 !important;
+}
+
+/* Новинка */
+.product-card__badge--new {
+    background-color: #2a9d8f !important;
+}
+
+/* Лимитированная серия */
+.product-card__badge--limited {
+    background-color: #6c5ce7 !important;
 }
